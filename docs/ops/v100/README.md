@@ -34,7 +34,7 @@ In comparison with dual RTX5060Ti setup, it provides:
 ## What is included
 - [`BEST-KNOWN-CONFIG.md`](./BEST-KNOWN-CONFIG.md) — short description of the winning build and serving parameters
 - [`BUILDING.md`](./BUILDING.md) — how to build your own optimized V100 binaries
-- [`REPORT.md`](./REPORT.md) — full July 2026 test report
+- [`REPORT.md`](./REPORT.md) — full test report
 - [`.devops/v100-thetom-cuda126.Dockerfile`](../../../.devops/v100-thetom-cuda126.Dockerfile) — production-style container image for the best-known V100 runtime
 - [`docker-compose.example.yml`](./docker-compose.example.yml) — example `llama-server` deployment using mounted models
 - [`entrypoint.sh`](./entrypoint.sh) — runtime helper used by the container
