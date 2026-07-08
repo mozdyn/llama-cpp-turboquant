@@ -13,7 +13,7 @@ For the tested workload:
 The best practical point found was:
 - **CUDA 12.6.3**
 - **`q8_0 / q8_0` KV cache**
-- `TheTom/llama-cpp-turboquant`, because the measured runtime gap was insignificant in comparison with upstream llama.cpp and it gives KV tq compression possibilities for larger models or tighten VRAM setup. 
+- `TheTom/llama-cpp-turboquant`
 
 ### Why it matters
 Nvidia V100 is still valuable option for local interference when taking into consideration entry price and possibility to comfortably run local 35B MoE LLM's. 
@@ -42,11 +42,6 @@ In comparison with dual RTX5060Ti setup, it provides:
 ## Credits
 - upstream project: [`ggml-org/llama.cpp`](https://github.com/ggml-org/llama.cpp)
 - TurboQuant fork by TheTom: [`TheTom/llama-cpp-turboquant`](https://github.com/TheTom/llama-cpp-turboquant)
-
-## Recommended reading order
-1. [`BEST-KNOWN-CONFIG.md`](./BEST-KNOWN-CONFIG.md)
-2. [`BUILDING.md`](./BUILDING.md)
-3. [`REPORT.md`](./REPORT.md)
 
 ## Scope note
 This package is focused on the tested `V100 32 GB` single-GPU path. It does **not** claim that the same ranking will hold for:
