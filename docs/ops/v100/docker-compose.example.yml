@@ -1,0 +1,55 @@
+services:
+  llama-v100:
+    build:
+      context: ../../..
+      dockerfile: .devops/v100-thetom-cuda126.Dockerfile
+      args:
+        REPO_URL: https://github.com/TheTom/llama-cpp-turboquant.git
+        REPO_REF: main
+    image: llamacpp-thetom-v100:cuda126
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    environment:
+      CUDA_SCALE_LAUNCH_QUEUES: "4"
+    command:
+      - --model
+      - /models/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf
+      - --mmproj
+      - /models/mmproj-F16.gguf
+      - --ctx-size
+      - "262144"
+      - --parallel
+      - "2"
+      - --n-gpu-layers
+      - "999"
+      - --threads
+      - "10"
+      - --batch-size
+      - "4096"
+      - --ubatch-size
+      - "1024"
+      - --split-mode
+      - layer
+      - --flash-attn
+      - on
+      - --cache-type-k
+      - q8_0
+      - --cache-type-v
+      - q8_0
+      - --mmap
+      - --jinja
+      - --mmproj-offload
+      - --image-min-tokens
+      - "1024"
+      - --metrics
+      - --slots
+    volumes:
+      - /absolute/path/to/models:/models:ro
