@@ -27,7 +27,7 @@ In comparison with dual RTX5060Ti setup, it provides:
 
 ### Main findings
 - TheTom TurboQuant fork did **not** show a large speed/size advantage over upstream for this exact `35B + q8_0/q8_0 + single 32GB V100` case, but gives KV tq compression options for future use.
-- Upstream `--prefetch-weights` ([PR #21067](https://github.com/ggml-org/llama.cpp/pull/21067)) worked, but only gave a small point improvement and did not materially change the result.
+- Upstream `--prefetch-weights` ([PR #21067](https://github.com/ggml-org/llama.cpp/pull/21067)) worked, but did not significantly improved the result.
 - CUDA 13 do not support V100/SM70 builds.
 - CUDA 12.8 built and ran, but was **slower than CUDA 12.6** and showed **no VRAM improvement**.
 
