@@ -12,7 +12,7 @@ For the tested workload:
 
 The best practical point found was:
 - **CUDA 12.6.3**
-- **`q8_0 / q8_0` KV cache**
+- **q8_0 / q8_0 KV cache**
 - **TheTom/llama-cpp-turboquant**
 
 ### Why it matters
