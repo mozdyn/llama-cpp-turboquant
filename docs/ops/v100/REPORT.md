@@ -17,7 +17,7 @@ The goal of this campaign was to identify the most practical runtime shape for `
 - Kernel: **Linux 7.0.0-27-generic**
 - NVIDIA driver: **580.159.03**
 - Benchmark GPU: **Nvidia V100 32 GB PCI-E**
-- Llama Server settings tuned with llama-optimus for tested setup
+- Llama Server settings locally tuned with **llama-optimus**
 
 ### Model / workload
 - Base model: `Qwen3.6-35B-A3B-UD-Q4_K_M.gguf`
