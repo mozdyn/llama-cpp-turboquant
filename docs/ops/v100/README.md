@@ -1,6 +1,6 @@
 # V100 32 GB + llama.cpp / TurboQuant
 
-This directory contains a GitHub-ready, sanitized documentation and runtime bundle for running `Qwen3.6-35B-A3B`-class workloads on a `Nvidia V100 32 GB` with upstream `llama.cpp` and the TurboQuant fork.
+This directory contains documentation and runtime bundle for running `Qwen3.6-35B-A3B`-class workloads on a `Nvidia V100 32 GB` with upstream `llama.cpp` and the TurboQuant fork.
 
 ## Executive summary
 For the tested workload:
