@@ -6,8 +6,8 @@ This directory contains documentation and runtime bundle for running `Qwen3.6-35
 For the tested workload:
 - model family: `Qwen3.6-35B-A3B`
 - quant: `Q4_K_M`
-- VLM enabled
-- Full context supported by model: `256k`
+- VLM (vision) enabled
+- full context supported by model: `256k`
 - single PCI-E version of `Nvidia V100 32 GB`
 
 The best practical point found was:
