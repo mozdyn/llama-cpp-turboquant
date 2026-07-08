@@ -1,10 +1,10 @@
 # Best-known V100 32 GB configuration
 
 ## Winning build
-The best practical point found in the July 2026 campaign was:
+The best practical point found was:
 - fork: [`TheTom/llama-cpp-turboquant`](https://github.com/TheTom/llama-cpp-turboquant)
 - CUDA container/toolchain: **`12.6.3`**
-- GPU target: **SM70 / Tesla V100**
+- GPU target: **SM70 / Nvidia V100**
 - workload class: `Qwen3.6-35B-A3B-Q4_K_M` with VLM enabled
 
 ## Why this build won
@@ -60,16 +60,5 @@ llama-server \
 - only worth it if you explicitly accept the quality trade-off
 
 ### `q8_0 / turbo4` and `turbo4 / turbo2`
-- saved some VRAM
+- saved some VRAM with low PPL penalty
 - did not produce the best speed/quality frontier for this case
-
-## Repo choice
-For this exact profile, runtime differences between:
-- upstream [`ggml-org/llama.cpp`](https://github.com/ggml-org/llama.cpp)
-- and [`TheTom/llama-cpp-turboquant`](https://github.com/TheTom/llama-cpp-turboquant)
-
-were small.
-
-That means:
-- upstream is a valid base
-- keeping TheTom still makes sense as a lab/hedge for future larger models or memory-constrained cases

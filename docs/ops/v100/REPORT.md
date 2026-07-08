@@ -3,12 +3,11 @@
 Date range: 2026-07-07 → 2026-07-08
 
 ## 1. Goal
-The goal of this campaign was to identify the most practical runtime shape for `Qwen3.6-35B-A3B-UD-Q4_K_M` on a `Tesla V100 32 GB`, with emphasis on:
-- whether keeping the TurboQuant fork (`TheTom/llama-cpp-turboquant`) is still justified,
+The goal of this campaign was to identify the most practical runtime shape for `Qwen3.6-35B-A3B-UD-Q4_K_M` on a `Nvidia V100 32 GB`, with emphasis on:
 - the real value of different KV-cache profiles,
 - the effect of the upstream `--prefetch-weights` patch,
 - the effect of different CUDA container/toolchain versions,
-- and practical VLM fit / throughput behavior at `ctx=256k`.
+- and practical VLM fit / throughput behavior at full `ctx=256k`.
 
 ## 2. Test environment
 ### Hardware / platform
@@ -16,11 +15,8 @@ The goal of this campaign was to identify the most practical runtime shape for `
 - Guest OS: **Ubuntu 26.04 LTS**
 - Kernel: `Linux 7.0.0-27-generic`
 - NVIDIA driver: `580.159.03`
-- GPUs visible in the guest:
-  - `GPU0: Tesla V100-PCIE-32GB`
-  - `GPU1: Tesla V100-PCIE-32GB`
-  - `GPU2: NVIDIA GeForce RTX 3060 12 GB`
-- Primary benchmark GPU in dedicated windows: **GPU1 (Tesla V100 32 GB)**
+- Benchmark Nvidia V100 32 GB PCI-E 
+- Llama Server settings tuned with llama-optimus for tested setup
 
 ### Model / workload
 - Base model: `Qwen3.6-35B-A3B-UD-Q4_K_M.gguf`
@@ -145,16 +141,7 @@ Benchmarked `q8_0/q8_0`:
 - final verdict: **not high-ROI for this workload**
 
 ## 9. CUDA 13
-### Attempt
-A real rebuild of TheTom was attempted in:
-- `nvidia/cuda:13.0.0-devel-ubuntu24.04`
-
-### Result
-The build failed already at the CUDA compiler test:
-- `nvcc fatal : Unsupported gpu architecture 'compute_70'`
-
-### Verdict
-- this CUDA 13 toolchain is not suitable for native V100 / SM70 builds
+- CUDA 13 toolchain does not support for V100 / SM70 architecture
 
 ## 10. CUDA 12.8
 ### Build status
@@ -181,9 +168,13 @@ The build failed already at the CUDA compiler test:
   - same VRAM
   - lower throughput
 
-## 11. Historical context: old 2x RTX 5060 Ti system
-Older findings showed that:
-- a `2x RTX 5060 Ti 16 GB` setup handled `35B-A3B universal + embeddings` at about `200k ctx`
+## 11. Historical context: old `llm-core` 2x RTX 5060 Ti
+Older findings from:
+- `docs/architecture/2026-04-27-llm-core-qwen36-universal-findings.md`
+
+showed that:
+- `llm-core` had `2x RTX 5060 Ti 16 GB`
+- `35B-A3B universal + embeddings` was stably validated at about `200k ctx`
 - `27B + TurboQuant + 256k ctx` worked technically
 - `27B + TurboQuant + vision + embeddings + 256k ctx` was a strong candidate on that hardware
 
@@ -216,7 +207,7 @@ The best practical point found in this campaign remains:
 
 ## 13. Related docs
 - [README.md](./README.md)
-- [BEST-KNOWN-CONFIG.md](./BEST-KNOWN-CONFIG.md)
+- [V100-BEST-KNOWN-CONFIG.md](./V100-BEST-KNOWN-CONFIG.md)
 - [BUILDING.md](./BUILDING.md)
 
 ## 14. Credits

@@ -12,7 +12,7 @@ Use:
 - Ubuntu 24.04 CUDA devel image
 - `cmake + ninja`
 
-Do **not** use the tested CUDA 13 image for V100 native builds in this workflow: in our test it rejected `compute_70`.
+Do **not** use CUDA 13 image for V100 as it doesn't support `compute_70`.
 
 ## Clone
 ```bash
@@ -62,22 +62,17 @@ docker run --rm --gpus all \
   - reduces build surface and avoids unnecessary failures for this deployment-oriented build
 
 ## Expected output binaries
-After a successful build, you should have at least:
+After a successful build, inside your build directory you should have at least:
 - `llama-server`
 - `llama-bench`
 - `llama-perplexity`
 - `llama-cli`
 - `llama-quantize`
 
-inside your build directory, for example:
-- `build-sm70/bin/`
-
 ## Local runtime note
-If your host does not provide matching CUDA user-space libraries, do **not** run the binaries directly on the host and assume a runtime failure means a bad build.
-
-Instead, run them inside a matching CUDA container and mount the build tree into the container.
+If your host does not provide matching CUDA user-space libraries, do **not** run the binaries directly on the host. Instead, run them inside a matching CUDA container and mount the build tree into the container.
 
 ## Related docs
 - [README.md](./README.md)
-- [BEST-KNOWN-CONFIG.md](./BEST-KNOWN-CONFIG.md)
+- [V100-BEST-KNOWN-CONFIG.md](./V100-BEST-KNOWN-CONFIG.md)
 - [REPORT.md](./REPORT.md)

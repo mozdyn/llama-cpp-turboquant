@@ -1,21 +1,6 @@
 # V100 32 GB + llama.cpp / TurboQuant
 
-This directory contains a GitHub-ready, sanitized documentation and runtime bundle for running `Qwen3.6-35B-A3B`-class workloads on a `Tesla V100 32 GB` with `llama.cpp` and the TurboQuant fork.
-
-It intentionally excludes:
-- private hostnames
-- private IP addresses
-- usernames
-- local absolute paths
-- credentials or secrets
-
-## What is included
-- [`BEST-KNOWN-CONFIG.md`](./BEST-KNOWN-CONFIG.md) — short description of the winning build and serving parameters
-- [`BUILDING.md`](./BUILDING.md) — how to build your own optimized V100 binaries
-- [`REPORT.md`](./REPORT.md) — full July 2026 test report
-- [`docker-compose.example.yml`](./docker-compose.example.yml) — example `llama-server` deployment using mounted models
-- [`entrypoint.sh`](./entrypoint.sh) — runtime helper for the container image
-- [`.devops/v100-thetom-cuda126.Dockerfile`](../../../.devops/v100-thetom-cuda126.Dockerfile) — production-style container image for the best-known V100 runtime (no model included)
+This directory contains a GitHub-ready, sanitized documentation and runtime bundle for running `Qwen3.6-35B-A3B`-class workloads on a `Nvidia V100 32 GB` with upstream `llama.cpp` and the TurboQuant fork.
 
 ## Executive summary
 For the tested workload:
@@ -28,20 +13,38 @@ For the tested workload:
 The best practical point found was:
 - **CUDA 12.6.3**
 - **`q8_0 / q8_0` KV cache**
-- either upstream `llama.cpp` or `TheTom/llama-cpp-turboquant`, because the measured runtime gap was small
+- `TheTom/llama-cpp-turboquant`, because the measured runtime gap was insignificant in comparison with upstream llama.cpp and it gives KV tq compression possibilities for larger models or tighten VRAM setup. 
+
+### Why it matters
+Nvidia V100 is still valuable option for local interference when taking into consideration entry price and possibility to comfortably run local 35B MoE LLM's. 
+In comparison with dual RTX5060Ti setup, it provides:
+- similar decode speed at 90-100 t/s (how fast your LLM writes to you)
+- much slower prefill at 1100 t/s (how long will you wait for first token after asking the question - this is crucial as my Hermes agent has  25k of initial prompt, so first token comes after about 25-30s)
+- better VRAM fit (as dual GPU has some overhead)
+- require some DIY for cooling and it's louder (3d printed air duct, 7$ fan, 3$ fan controller and some skills) 
+- PCI-E is ok for single-gpu setups, for multi-gpu chose SMX/NVLink version (more DIY needed). 
+- Comfortable VRAM fit for decent 35B MoE up to Q5 with vision and full 256k CTX. 
 
 ### Main findings
 - TheTom TurboQuant fork did **not** show a large runtime-only advantage over upstream for this exact `35B + q8_0/q8_0 + single V100` case.
 - Upstream `--prefetch-weights` ([PR #21067](https://github.com/ggml-org/llama.cpp/pull/21067)) worked, but only gave a small point improvement and did not materially change the result.
-- CUDA 13 was **not usable** for native V100 builds in the tested container toolchain because `nvcc` rejected `compute_70`.
+- CUDA 13 do not support V100 builds.
 - CUDA 12.8 built and ran, but was **slower than CUDA 12.6** and showed **no VRAM improvement**.
+
+## What is included
+- [`V100-BEST-KNOWN-CONFIG.md`](./V100-BEST-KNOWN-CONFIG.md) — short description of the winning build and serving parameters
+- [`BUILDING.md`](./BUILDING.md) — how to build your own optimized V100 binaries
+- [`REPORT.md`](./REPORT.md) — full July 2026 test report
+- [`Dockerfile.cuda126-v100-thetom`](./Dockerfile.cuda126-v100-thetom) — production-style container image for the best-known V100 runtime 
+- [`docker-compose.example.yml`](./docker-compose.example.yml) — example `llama-server` deployment using mounted models
+- [`entrypoint.sh`](./entrypoint.sh) — runtime helper used by the container
 
 ## Credits
 - upstream project: [`ggml-org/llama.cpp`](https://github.com/ggml-org/llama.cpp)
 - TurboQuant fork by TheTom: [`TheTom/llama-cpp-turboquant`](https://github.com/TheTom/llama-cpp-turboquant)
 
 ## Recommended reading order
-1. [`BEST-KNOWN-CONFIG.md`](./BEST-KNOWN-CONFIG.md)
+1. [`V100-BEST-KNOWN-CONFIG.md`](./V100-BEST-KNOWN-CONFIG.md)
 2. [`BUILDING.md`](./BUILDING.md)
 3. [`REPORT.md`](./REPORT.md)
 
