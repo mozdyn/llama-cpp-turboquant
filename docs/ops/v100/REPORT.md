@@ -11,12 +11,12 @@ The goal of this campaign was to identify the most practical runtime shape for `
 
 ## 2. Test environment
 ### Hardware / platform
-- Hardware HP Z4G4, Intel Xeon W-2135, 128GB DDR4, 1000W PSU
+- Hardware **HP Z4G4, Intel Xeon W-2135, 128GB DDR4, 1000W PSU**
 - Virtualization: **KVM guest on Proxmox VE**
 - Guest OS: **Ubuntu 26.04 LTS**
-- Kernel: `Linux 7.0.0-27-generic`
-- NVIDIA driver: `580.159.03`
-- Benchmark GPU: Nvidia V100 32 GB PCI-E 
+- Kernel: **Linux 7.0.0-27-generic**
+- NVIDIA driver: **580.159.03**
+- Benchmark GPU: **Nvidia V100 32 GB PCI-E**
 - Llama Server settings tuned with llama-optimus for tested setup
 
 ### Model / workload
