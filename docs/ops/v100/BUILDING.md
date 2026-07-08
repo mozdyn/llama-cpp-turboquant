@@ -74,5 +74,5 @@ If your host does not provide matching CUDA user-space libraries, do **not** run
 
 ## Related docs
 - [README.md](./README.md)
-- [V100-BEST-KNOWN-CONFIG.md](./V100-BEST-KNOWN-CONFIG.md)
+- [BEST-KNOWN-CONFIG.md](./BEST-KNOWN-CONFIG.md)
 - [REPORT.md](./REPORT.md)

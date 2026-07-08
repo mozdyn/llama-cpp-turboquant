@@ -2,7 +2,7 @@ services:
   llama-v100:
     build:
       context: .
-      dockerfile: Dockerfile.cuda126-v100-thetom
+      dockerfile: .devops/v100-thetom-cuda126.Dockerfile
       args:
         REPO_URL: https://github.com/TheTom/llama-cpp-turboquant.git
         REPO_REF: main

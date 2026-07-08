@@ -207,7 +207,7 @@ The best practical point found in this campaign remains:
 
 ## 13. Related docs
 - [README.md](./README.md)
-- [V100-BEST-KNOWN-CONFIG.md](./V100-BEST-KNOWN-CONFIG.md)
+- [BEST-KNOWN-CONFIG.md](./BEST-KNOWN-CONFIG.md)
 - [BUILDING.md](./BUILDING.md)
 
 ## 14. Credits

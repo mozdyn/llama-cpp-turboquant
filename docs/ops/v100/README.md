@@ -32,10 +32,10 @@ In comparison with dual RTX5060Ti setup, it provides:
 - CUDA 12.8 built and ran, but was **slower than CUDA 12.6** and showed **no VRAM improvement**.
 
 ## What is included
-- [`V100-BEST-KNOWN-CONFIG.md`](./V100-BEST-KNOWN-CONFIG.md) — short description of the winning build and serving parameters
+- [`BEST-KNOWN-CONFIG.md`](./BEST-KNOWN-CONFIG.md) — short description of the winning build and serving parameters
 - [`BUILDING.md`](./BUILDING.md) — how to build your own optimized V100 binaries
 - [`REPORT.md`](./REPORT.md) — full July 2026 test report
-- [`Dockerfile.cuda126-v100-thetom`](./Dockerfile.cuda126-v100-thetom) — production-style container image for the best-known V100 runtime 
+- [`.devops/v100-thetom-cuda126.Dockerfile`](../../../.devops/v100-thetom-cuda126.Dockerfile) — production-style container image for the best-known V100 runtime
 - [`docker-compose.example.yml`](./docker-compose.example.yml) — example `llama-server` deployment using mounted models
 - [`entrypoint.sh`](./entrypoint.sh) — runtime helper used by the container
 
@@ -44,7 +44,7 @@ In comparison with dual RTX5060Ti setup, it provides:
 - TurboQuant fork by TheTom: [`TheTom/llama-cpp-turboquant`](https://github.com/TheTom/llama-cpp-turboquant)
 
 ## Recommended reading order
-1. [`V100-BEST-KNOWN-CONFIG.md`](./V100-BEST-KNOWN-CONFIG.md)
+1. [`BEST-KNOWN-CONFIG.md`](./BEST-KNOWN-CONFIG.md)
 2. [`BUILDING.md`](./BUILDING.md)
 3. [`REPORT.md`](./REPORT.md)
 
