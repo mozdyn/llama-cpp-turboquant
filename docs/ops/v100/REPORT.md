@@ -15,7 +15,7 @@ The goal of this campaign was to identify the most practical runtime shape for `
 - Guest OS: **Ubuntu 26.04 LTS**
 - Kernel: `Linux 7.0.0-27-generic`
 - NVIDIA driver: `580.159.03`
-- Benchmark Nvidia V100 32 GB PCI-E 
+- Benchmark GPU: Nvidia V100 32 GB PCI-E 
 - Llama Server settings tuned with llama-optimus for tested setup
 
 ### Model / workload
@@ -94,7 +94,7 @@ Profiles:
 - only worth it if that trade-off is explicitly desired
 
 ### `q8_0 / turbo4` and `turbo4 / turbo2`
-- did not create a better Pareto frontier for this workload
+- did not provide any significant value
 
 ## 6. VLM VRAM fit at `ctx=256k`
 | KV profile | Fit | VRAM used MiB | VRAM free MiB |
