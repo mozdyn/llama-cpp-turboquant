@@ -8,12 +8,12 @@ For the tested workload:
 - quant: `Q4_K_M`
 - VLM enabled
 - context: `256k`
-- single `Tesla V100 32 GB`
+- single `Nvidia V100 32 GB`
 
 The best practical point found was:
 - **CUDA 12.6.3**
 - **`q8_0 / q8_0` KV cache**
-- `TheTom/llama-cpp-turboquant`
+- **TheTom/llama-cpp-turboquant**
 
 ### Why it matters
 Nvidia V100 is still valuable option for local interference when taking into consideration entry price and possibility to comfortably run local 35B MoE LLM's. 
@@ -26,7 +26,7 @@ In comparison with dual RTX5060Ti setup, it provides:
 - Comfortable VRAM fit for decent 35B MoE up to Q5 with vision and full 256k CTX. 
 
 ### Main findings
-- TheTom TurboQuant fork did **not** show a large speed/size advantage over upstream for this exact `35B + q8_0/q8_0 + single V100` case, but gives KV tq compression for future use.
+- TheTom TurboQuant fork did **not** show a large speed/size advantage over upstream for this exact `35B + q8_0/q8_0 + single 32GB V100` case, but gives KV tq compression options for future use.
 - Upstream `--prefetch-weights` ([PR #21067](https://github.com/ggml-org/llama.cpp/pull/21067)) worked, but only gave a small point improvement and did not materially change the result.
 - CUDA 13 do not support V100 builds.
 - CUDA 12.8 built and ran, but was **slower than CUDA 12.6** and showed **no VRAM improvement**.
