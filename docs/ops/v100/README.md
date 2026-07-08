@@ -7,8 +7,8 @@ For the tested workload:
 - model family: `Qwen3.6-35B-A3B`
 - quant: `Q4_K_M`
 - VLM enabled
-- context: `256k`
-- single `Nvidia V100 32 GB`
+- Full context supported by model: `256k`
+- single PCI-E version of `Nvidia V100 32 GB`
 
 The best practical point found was:
 - **CUDA 12.6.3**
